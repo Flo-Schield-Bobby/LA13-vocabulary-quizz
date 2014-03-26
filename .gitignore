@@ -1,3 +1,9 @@
+# Silex dependencies
 /composer.phar
 /vendor
+
+# Local configuration
 /config/parameters.yml
+
+# Mac OS files
+*.DS_Store
