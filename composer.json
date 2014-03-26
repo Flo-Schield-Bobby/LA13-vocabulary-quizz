@@ -1,0 +1,27 @@
+{
+    "require": {
+        "silex/silex": "~1.1",
+        "twig/twig": ">=1.8,<2.0-dev",
+        "entea/silex-twig-simple-asset-extension": "dev-master",
+        "symfony/browser-kit": "~2.4.2",
+        "symfony/console": "~2.4.2",
+        "symfony/config": "~2.4.2",
+        "symfony/css-selector": "~2.4.2",
+        "symfony/dom-crawler": "~2.4.2",
+        "symfony/filesystem": "~2.4.2",
+        "symfony/finder": "~2.4.2",
+        "symfony/form": "~2.4.2",
+        "symfony/locale": "~2.4.2",
+        "symfony/process": "~2.4.2",
+        "symfony/security": "~2.4.2",
+        "symfony/serializer": "~2.4.2",
+        "symfony/translation": "~2.4.2",
+        "symfony/validator": "~2.4.2",
+        "symfony/monolog-bridge": "~2.4.2",
+        "symfony/twig-bridge": "~2.4.2",
+        "symfony/yaml": "~2.4.2",
+        "deralex/yaml-config-service-provider": "1.0.*@dev",
+        "doctrine/dbal": ">=2.2.0,<2.4.0-dev",
+        "dflydev/doctrine-orm-service-provider": "1.0.*@dev"
+    }
+}
