@@ -1,0 +1,5 @@
+SELECT  idUser as id, pseudoUser,
+ (SELECT count(*) from la13_answer WHERE correct=1 AND idUser= id) as corrects,
+count(*) as total,
+( (SELECT count(*) from la13_answer WHERE correct=1 AND idUser= id)  / (count(*)) * 100.0) as percentage 
+FROM `la13_user` JOIN la13_answer USING (idUser)  WHERE 1=1 GROUP BY idUser ORDER BY `percentage` DESC
