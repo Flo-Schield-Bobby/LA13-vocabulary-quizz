@@ -1,0 +1,11 @@
+{
+  "name": "la13-vocabulary",
+  "private": true,
+  "dependencies": {
+    "modernizr": "~2.7.1",
+    "jquery": "~1.11.0",
+    "underscore": "~1.6.0",
+    "font-awesome": "~4.0.3",
+    "semantic-ui": "~0.15.1"
+  }
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class='no-js lt-ie9 lt-ie8 lt-ie7'> <![endif]-->
+<!--[if IE 7]>         <html class='no-js lt-ie9 lt-ie8'> <![endif]-->
+<!--[if IE 8]>         <html class='no-js lt-ie9'> <![endif]-->
+<!--[if gt IE 8]><!--> <html class='no-js'> <!--<![endif]-->
+    <head>
+        <meta charset='utf-8' />
+        <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' />
+        <meta name='keywords' content='' />
+        <meta name='description' content='' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <title>{% block title %}LA13 - Vocabulary{% endblock %}</title>
+        <link rel='icon' href='favicon.png' />
+        {% block stylesheets %}
+            <link rel='stylesheet' href='{{ asset("assets/styles/vendor/semantic-ui-0.15.1.min.css") }}' />
+        {% endblock %}
+        {% block head_javascripts %}
+            <script src='{{ asset("assets/scripts/vendor/modernizr-2.7.1-respond-1.1.0.min.js") }}'></script>
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+            <section id='app-la13' class='main container'>
+                <nav class='ui tiered menu'>
+                    {% block menu %}
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <a href='{{ app.url_generator.generate('profile') }}' class='item{% block menu_link_class_profile %}{% endblock %}'>{{ app.user.username }}</a>
+                            <a href='{{ app.url_generator.generate('logout') }}' class='item'>Logout</a>
+                        {% else %}
+                            <a href='{{ app.url_generator.generate('login') }}' class='item'>Login</a>
+                        {% endif %}
+                        <a href='{{ app.url_generator.generate('home') }}' class='item{% block menu_link_class_training %}{% endblock %}'>Training</a>
+                        <a href='{{ app.url_generator.generate('words') }}' class='item{% block menu_link_class_words %}{% endblock %}'>Words</a>
+                    {% endblock %}
+                </nav>
+                <header id='app-la13-header'>
+                    <h1>LA13 - Training</h1>
+                </header>
+                {% block app_content %}{% endblock %}
+            </section>
+        {% endblock %}
+        {% block javascripts %}
+            <script src='{{ asset("assets/scripts/vendor/jquery-1.11.0.min.js") }}'></script>
+            <script src='{{ asset("assets/scripts/vendor/semantic-ui-0.15.1.min.js") }}'></script>
+            <script src='{{ asset("assets/scripts/plugins.js") }}'></script>
+        {% endblock %}
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src='//www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+    </body>
+</html>

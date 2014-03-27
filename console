@@ -1,0 +1,64 @@
+#!/usr/bin/env php5
+<?php
+// Load your bootstrap or instantiate application and setup your config here
+
+require_once APP_ROOT .'/vendor/autoload.php';
+
+// Silex utilities
+use Silex\Application;
+use Silex\Provider\DoctrineServiceProvider;
+
+// Symfony components
+use Symfony\Component\Console\Helper\HelperSet;
+
+// Doctrine services
+use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
+use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+
+// Third-party services
+use DerAlex\Silex\YamlConfigServiceProvider;
+use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
+
+$app = new Application();
+
+// Load config parameters
+$app->register(new YamlConfigServiceProvider(__DIR__ . '/config/parameters.yml'));
+
+$parameters = array(
+    'database' => array(
+        'driver'   => $app['config']['database']['driver'],
+        'dbname'   => $app['config']['database']['name'],
+        'host'     => $app['config']['database']['host'],
+        'user'     => $app['config']['database']['user'],
+        'password' => $app['config']['database']['password'],
+        'port'     => $app['config']['database']['port']
+    )
+);
+
+// Doctrine
+$app->register(new DoctrineServiceProvider(), array(
+    'db.options' => $parameters['database']
+));
+
+// Doctrine ORM
+$app->register(new DoctrineOrmServiceProvider(), array(
+    'orm.em.options' => array(
+        'mappings' => array(
+            array(
+                'type' => 'annotation',
+                'namespace' => 'FSB\Palmeraie\Entity'
+            )
+        )
+    )
+));
+
+// $console = new ConnectionHelper($app['orm.em']->getConnection(),
+//  'em' => new EntityManagerHelper($app['orm.em'])
+// );
+
+$helperSet = new HelperSet(array(
+    'db' => new ConnectionHelper($app['orm.em']->getConnection()),
+    'em' => new EntityManagerHelper($app['orm.em'])
+));
+ConsoleRunner::run($helperSet);
